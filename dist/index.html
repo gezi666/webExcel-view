@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <title>web-excel</title>
+    <link rel="icon" href="logo.ico" />
+    <style>
+      html,
+      body,
+      #excel-demo {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <link href="w_excel_fill.css" rel="stylesheet" />
+  </head>
+
+  <body onload="load()">
+    <div id="excel-demo"></div>
+    <script>
+      function load() {
+        var data = {
+          name: "测试报表",
+          // freeze: "D13",
+          styles: [
+            {
+              bgcolor: "#a7d08c",
+              textwrap: true,
+              color: "#900b09",
+              align: "left",
+              border: {
+                top: ["thin", "#000"],
+                bottom: ["thin", "#000"],
+                right: ["thin", "#000"],
+                left: ["thin", "#000"]
+              },
+              diagonals: true
+            },
+            {
+              align: "center",
+              border: {
+                top: ["double", "#000"],
+                bottom: ["double", "#000"],
+                right: ["double", "#000"],
+                left: ["double", "#000"]
+              }
+            },
+            {
+              align: "center",
+              border: {
+                top: ["thin", "#000"],
+                bottom: ["thin", "#000"],
+                right: ["thin", "#000"],
+                left: ["thin", "#000"]
+              }
+            },
+            {
+              align: "center",
+              color: "red",
+              underline: true,
+              font: {
+                bold: true,
+                italic: true,
+                name: "Helvetica",
+                size: 20
+              },
+              border: {
+                top: ["thin", "#000"],
+                bottom: ["thin", "#000"],
+                right: ["thin", "#000"],
+                left: ["thin", "#000"]
+              }
+            },
+            {
+              align: "center",
+              border: {
+                top: ["thin", "#000"],
+                bottom: ["thin", "#000"],
+                right: ["thin", "#000"],
+                left: ["double", "#000"]
+              }
+            },
+            {
+              align: "center",
+              border: {
+                top: ["thin", "#000"],
+                bottom: ["thin", "#000"],
+                right: ["double", "#000"],
+                left: ["thin", "#000"]
+              }
+            }
+          ],
+          // merges: ["H5:J7", "H12:I12"],
+          merges: ["H5:J7"],
+          cols: {
+            // 12: { hide: false, width: 0 }
+            // 2: { width: 120 },
+            // 3: { width: 120 },
+            // 4: { width: 120 },
+            // 5: { width: 155 },
+            // 6: { width: 155 },
+            // 7: { width: 117 }
+          },
+          rows: {
+            2: {
+              cells: {
+                2: { text: "只读单元格", style: 2, readonly: true }
+              }
+            },
+            4: {
+              height: 38,
+              cells: {
+                2: { text: "         年级\n 班级", style: 0 },
+                3: { text: "一年级", style: 2 },
+                4: { text: "二年级", style: 2 },
+                5: { text: "三年级", style: 2 },
+                7: {
+                  text: "合并单元格",
+                  style: 3,
+                  merge: [2, 2],
+                  mergeRange: { sri: 4, sci: 7, eri: 6, eci: 9 }
+                }
+              }
+            },
+            5: {
+              height: 38,
+              cells: {
+                2: { text: "91班", style: 2 },
+                3: { text: "50", style: 2 },
+                4: { text: "53", style: 2 },
+                5: { text: "48", style: 2 }
+              }
+            },
+            6: {
+              height: 38,
+              cells: {
+                2: { text: "1", style: 1 },
+                3: { text: "2", style: 1 },
+                4: { text: "3", style: 1 },
+                5: { text: "4", style: 1 }
+              }
+            }
+            // 10: {
+            //   height: 30,
+            //   cells: {
+            //     2: {
+            //       cellId: "b1",
+            //       text: "扩展行："
+            //     }
+            //   }
+            // },
+            // 11: {
+            //   height: 40,
+            //   cells: {
+            //     2: {
+            //       cellId: "c1",
+            //       text: "序号",
+            //       style: 2,
+            //       kzhExtra: { kzid: "kz1", kzlx: "1", sfxhl: "1" }
+            //     },
+            //     3: {
+            //       cellId: "c2",
+            //       text: "单1",
+            //       style: 2,
+            //       kzhExtra: { kzid: "kz1", kzlx: "1", sfxhl: "0" },
+            //       extra: {
+            //         kjid: "1",
+            //         kjlx: "1",
+            //         tsfs: "1",
+            //         yzsmwz: "单行文本",
+            //         txgz: "9"
+            //       }
+            //     },
+            //     4: {
+            //       cellId: "c3",
+            //       text: "人口总数：",
+            //       style: 2,
+            //       kzhExtra: { kzid: "kz1", kzlx: "1", sfxhl: "0" }
+            //     },
+            //     5: {
+            //       cellId: "c4",
+            //       text: "数1",
+            //       style: 2,
+            //       kzhExtra: { kzid: "kz1", kzlx: "1", sfxhl: "0" },
+            //       extra: {
+            //         kjid: "2",
+            //         kjlx: "3",
+            //         tsfs: "2",
+            //         yzsmwz: "数字",
+            //         sfyxfs: 0,
+            //         sfyxxs: 1,
+            //         xsw: 4
+            //       }
+            //     },
+            //     6: {
+            //       cellId: "c5",
+            //       text: "多1",
+            //       style: 2,
+            //       kzhExtra: { kzid: "kz1", kzlx: "1", sfxhl: "0" },
+            //       extra: { kjid: "3", kjlx: "2", tsfs: "2", yzsmwz: "多行文本" }
+            //     },
+            //     7: {
+            //       cellId: "c16",
+            //       text: "多行文本-合并",
+            //       style: 2,
+            //       merge: [0, 1],
+            //       mergeRange: { sri: 11, sci: 7, eri: 11, eci: 8 },
+            //       kzhExtra: { kzid: "kz1", kzlx: "1", sfxhl: "0" },
+            //       extra: {
+            //         kjid: "13",
+            //         kjlx: "2",
+            //         tsfs: "2",
+            //         yzsmwz: "多行文本-合并"
+            //       }
+            //     }
+            //   }
+            // },
+            // 20: {
+            //   height: 30,
+            //   cells: {
+            //     2: {
+            //       cellId: "c6",
+            //       text: "单选1",
+            //       extra: {
+            //         kjid: "8",
+            //         kjlx: "5",
+            //         tsfs: "2",
+            //         anzmc: "性别",
+            //         yzsmwz: "单选按钮组"
+            //       }
+            //     },
+            //     3: {
+            //       cellId: "c7",
+            //       text: "单选2",
+            //       extra: {
+            //         kjid: "7",
+            //         kjlx: "5",
+            //         tsfs: "2",
+            //         anzmc: "性别",
+            //         yzsmwz: "单选按钮组"
+            //       }
+            //     },
+            //     4: {
+            //       cellId: "c8",
+            //       text: "单选3",
+            //       extra: {
+            //         kjid: "6",
+            //         kjlx: "5",
+            //         tsfs: "2",
+            //         anzmc: "性别",
+            //         yzsmwz: "单选按钮组"
+            //       }
+            //     },
+            //     5: {
+            //       cellId: "c9",
+            //       text: "ceshi",
+            //       extra: { kjid: "5", kjlx: "8", tsfs: "2", yzsmwz: "日期" }
+            //     },
+            //     6: {
+            //       cellId: "c10",
+            //       text: "日期控件",
+            //       extra: {
+            //         kjVal: "2021-05-24 08:45:31",
+            //         kjid: "13",
+            //         kjlx: "8",
+            //         tsfs: "2",
+            //         yzsmwz: "日期",
+            //         rqgs: "yyyy年MM月dd日",
+            //         sjgs: "HH时",
+            //         kssj: "",
+            //         jssj: ""
+            //       }
+            //     },
+            //     7: {
+            //       cellId: "c11",
+            //       text: "ceshi",
+            //       extra: {
+            //         kjid: "4",
+            //         kjlx: "4",
+            //         tsfs: "2",
+            //         xsz: "2", // 显示格式：1代码，2名称，3代码----名称
+            //         yzsmwz: "下拉框"
+            //       }
+            //     }
+            //   }
+            // },
+            // 21: {
+            //   height: 30,
+            //   cells: {
+            //     2: {
+            //       cellId: "c12",
+            //       text: "复选1",
+            //       extra: {
+            //         kjid: "9",
+            //         kjlx: "7",
+            //         tsfs: "2",
+            //         anzmc: "复选组",
+            //         yzsmwz: "复选按钮组",
+            //         zdxzsl: "2"
+            //       }
+            //     },
+            //     3: {
+            //       cellId: "c13",
+            //       text: "复选2",
+            //       extra: {
+            //         kjid: "10",
+            //         kjlx: "7",
+            //         tsfs: "2",
+            //         anzmc: "复选组",
+            //         yzsmwz: "复选按钮组",
+            //         zdxzsl: "2"
+            //       }
+            //     },
+            //     4: {
+            //       cellId: "c14",
+            //       text: "复选3",
+            //       extra: {
+            //         kjid: "11",
+            //         kjlx: "7",
+            //         tsfs: "2",
+            //         anzmc: "复选组",
+            //         yzsmwz: "复选按钮组",
+            //         zdxzsl: "2"
+            //       }
+            //     }
+            //   }
+            // },
+            // 22: {
+            //   height: 30,
+            //   cells: {
+            //     2: {
+            //       cellId: "c15",
+            //       text: "上传",
+            //       extra: {
+            //         kjid: "12",
+            //         kjlx: "9",
+            //         tsfs: "2",
+            //         yzsmwz: "上传附件",
+            //         sfplsc: "1",
+            //         zdzcwjgs: "2",
+            //         wjlx: "XLSX,XLS",
+            //         wjdx: ""
+            //       }
+            //     }
+            //   }
+            // },
+            // 25: {
+            //   cells: {
+            //     2: {
+            //       cellId: "c17",
+            //       text: "",
+            //       extra: {
+            //         kjid: "14",
+            //         kjVal: "https://www.w3school.com.cn/i/eg_tulip.jpg",
+            //         kjlx: "10",
+            //         tbsBkbj: "1",
+            //         tbsBkj: "1",
+            //         tbsBxwk: "1",
+            //         tsfs: "2",
+            //         yzsmwz: "移动拍照",
+            //         zbms: ""
+            //       }
+            //     }
+            //   }
+            // }
+          },
+          extra: {
+            // kzhArray: [
+            //   {
+            //     kzid: "kz1", //扩展id：前端赋值
+            //     kzlx: "1", //扩展类型：1按行扩展，2按目录扩展
+            //     sjlyLx: "1", //数据来源类型：1数据字典，2控件接口
+            //     sjzdId: "", //数据字典id
+            //     sjzdGl: [{}, {}], //数据字典过滤：通过过滤数据字典，得到一批数据字典项，
+            //     jkid: "", //接口id
+            //     xhObj: {
+            //       //序号列
+            //       cellId: "c1", //单元格id
+            //       kjid: "" //控件id
+            //     },
+            //     dmObj: {
+            //       //代码列
+            //       cellId: "", //单元格id
+            //       kjid: "" //控件id
+            //     },
+            //     mcObj: {
+            //       //名称列
+            //       cellId: "", //单元格id
+            //       kjid: "" //控件id
+            //     },
+            //     jldwObj: {
+            //       //计量单位列
+            //       cellId: "", //单元格id
+            //       kjid: "" //控件id
+            //     },
+            //     kjArray: [
+            //       //扩展行下的控件数组
+            //       {
+            //         kjid: "",
+            //         cellId: "c1"
+            //       },
+            //       {
+            //         kjid: "1", //控件id：前端赋值
+            //         cellId: "c2" //单元格id
+            //       },
+            //       {
+            //         kjid: "",
+            //         cellId: "c3"
+            //       },
+            //       {
+            //         kjid: "2",
+            //         cellId: "c4"
+            //       },
+            //       {
+            //         kjid: "3",
+            //         cellId: "c5"
+            //       },
+            //       {
+            //         kjid: "13",
+            //         cellId: "c16"
+            //       }
+            //     ]
+            //   }
+            // ]
+          }
+        };
+
+        window.we = WEXCEL("#excel-demo", {
+          savedKjIds: ["1"],
+          mode: "design", //当前模式  design(设计时)|fill(填报时)
+          // showGrid: false,
+          // showToolbar: false,
+          // showFooter: false,
+          // showContextmenu: false,
+          // showExtendContextmenu: true
+          showSysExplain: true // 工具栏是否显示系统功能说明按钮
+          // col: {
+          // len: 12,
+          // width: 60
+          // }
+          // disableTools: ["paintFormat", "clearCell", "readonly"]
+          // row: {
+          //   len: 25
+          // }
+        })
+          .loadData(data)
+          .change(function (cdata) {
+            console.log("数据加载完成", cdata);
+            // console.log("数据验证", we.validate());
+          })
+          .contextMenuClick(function (type, val) {
+            // console.log("点击右键菜单", type, val);
+          })
+          .widgetDblclick(function (obj) {
+            // console.log("控件双击事件", obj)
+          });
+
+        // 给下拉框赋值
+        // const options = [
+        //   { key: 1, title: "北京", id: "x1" },
+        //   { key: 2, title: "上海", id: "x2" },
+        //   { key: 3, title: "天津", id: "x3" }
+        // ];
+        // we.sheet.widget.setSelectWidgetOptions("c11", options);
+      }
+    </script>
+    <script type="text/javascript" src="w_excel_fill.js"></script>
+  </body>
+</html>
